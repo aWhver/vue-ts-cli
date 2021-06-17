@@ -1,0 +1,21 @@
+{
+  "name": "vue-ts-cli",
+  "version": "1.0.0",
+  "description": "vue3、webpack5练习demo",
+  "repository": "https://github.com/aWhver/vue-ts-cli.git",
+  "author": "Tong <13714040198@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./scripts/build.js"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.2.3",
+    "vue-loader": "^15.9.7",
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "vue": "^3.1.1"
+  }
+}
