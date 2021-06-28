@@ -13,7 +13,15 @@ module.exports = function(env) {
         path: resolveApp('build'),
       },
       resolve: {
-        extensions: ['.vue', '.js'],
+        extensions: ['.vue', '.ts', '.js'],
+      },
+      module: {
+        rules: [
+          {
+            test: /\.vue$/,
+            loader: 'vue-loader'
+          }
+        ]
       },
       plugins: [
         new CleanWebpackPlugin(),
