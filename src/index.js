@@ -1,4 +1,4 @@
-var vue = 'vue2';
+var vue = 'vue33';
 console.log(vue);
 
 function fn (a, b) {

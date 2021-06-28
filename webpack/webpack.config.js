@@ -1,16 +1,31 @@
 const { merge } = require('webpack-merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { resolveApp } = require('./utils/paths');
 module.exports = function(env) {
   const config = require(resolveApp(`${__dirname}/config/${env}.config.js`));
 
-  return merge({
-    mode: env || 'production',
-    entry: resolveApp('src/index'),
-    output: {
-      path: resolveApp('build'),
+  return merge(
+    {
+      mode: env || 'production',
+      entry: resolveApp('src/index'),
+      output: {
+        path: resolveApp('build'),
+      },
+      resolve: {
+        extensions: ['.vue', '.js'],
+      },
+      plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+          template: './public/index.html',
+          filename: 'index.html',
+          title: 'vue-ts-cli',
+          inject: true,
+          minify: env === 'production',
+        }),
+      ],
     },
-    resolve: {
-      extensions: ['.vue', '.js'],
-    }
-  }, config);
-}
+    config
+  );
+};
