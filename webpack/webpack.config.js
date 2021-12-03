@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -81,7 +82,8 @@ module.exports = function (env) {
           filename: 'css/[name].[contenthash:8].css',
           chunkFilename: 'css/[name].[contenthash:8].chunk.css',
         }),
-        isProduction && new CssMinimizerWebpackPlugin()
+        isProduction && new CssMinimizerWebpackPlugin(),
+        !isProduction && new webpack.HotModuleReplacementPlugin()
       ].filter(Boolean),
       optimization: {
         minimize: isProduction

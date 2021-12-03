@@ -7,11 +7,12 @@ const open = require('open');
 
 const complier = webpack(webpackFactory('development'));
 const options = {
-  hot: true,
+  // disableHostCheck: true,
+  compress: true,
+  // hot: true,
   open: true,
-  // host: 'localhost',
-  // compress: true,
-  contentBase: './build'
+  // quiet: true,
+  overlay: false,
 };
 
 complier.hooks.invalid.tap('invalid', () => {
