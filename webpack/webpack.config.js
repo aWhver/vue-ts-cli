@@ -82,11 +82,16 @@ module.exports = function (env) {
           filename: 'css/[name].[contenthash:8].css',
           chunkFilename: 'css/[name].[contenthash:8].chunk.css',
         }),
-        isProduction && new CssMinimizerWebpackPlugin(),
         !isProduction && new webpack.HotModuleReplacementPlugin()
       ].filter(Boolean),
       optimization: {
-        minimize: isProduction
+        minimize: isProduction,
+        minimizer: [
+          // 继承默认压缩插件功能，因为配置minimizer意味着使用自定义压缩插件，会覆盖掉原有的压缩功能
+          // 比如terser-webpack-plugin
+          `...`,
+          new CssMinimizerWebpackPlugin()
+        ]
       }
     },
     config
