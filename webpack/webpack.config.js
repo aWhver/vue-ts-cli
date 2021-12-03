@@ -19,6 +19,11 @@ module.exports = function (env) {
       },
       resolve: {
         extensions: ['.vue', '.tsx', '.ts', '.ts', '.js'],
+        alias: {
+          pages: resolveApp('src/pages'),
+          components: resolveApp('src/components'),
+          router: resolveApp('src/router'),
+        }
       },
       module: {
         rules: [

@@ -7,22 +7,28 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./scripts/start.js",
-    "build": "node ./scripts/build.js"
+    "build": "node ./scripts/build.js",
+    "lint:fix": "eslint src --fix --ext .ts,.tsx,.vue,.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@types/webpack-dev-server": "^3.11.4",
+    "@typescript-eslint/parser": "^5.5.0",
     "@vue/compiler-sfc": "^3.1.4",
     "add-asset-html-webpack-plugin": "^3.2.0",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
+    "eslint": "^8.3.0",
+    "eslint-webpack-plugin": "^3.1.1",
     "html-webpack-plugin": "^5.3.2",
+    "husky": "^7.0.4",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
+    "lint-staged": "^12.1.2",
     "mini-css-extract-plugin": "^2.4.5",
     "open": "^8.2.1",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -43,5 +49,16 @@
     "@vue/babel-plugin-jsx": "^1.1.1",
     "vue": "^3.1.1",
     "vue-router": "4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,vue,js}": [
+      "yarn lint:fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
