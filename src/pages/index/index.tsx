@@ -1,4 +1,5 @@
 import { defineComponent, onMounted } from 'vue';
+import './style.less';
 
 const home = defineComponent({
   name: 'home',

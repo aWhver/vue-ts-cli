@@ -2,10 +2,13 @@ const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const { resolveApp } = require('./utils/paths');
+const { getStyleLoaders } = require('./utils/loaders');
 module.exports = function (env) {
   const config = require(resolveApp(`${__dirname}/config/${env}.config.js`));
-
+  const isProduction = env === 'production';
   return merge(
     {
       mode: env || 'production',
@@ -53,11 +56,15 @@ module.exports = function (env) {
                 loader: 'ts-loader',
                 options: {
                   // transpileOnly: true, 加速编译，会丢失不同依赖项之间静态类型检查的部分好处
-                  appendTsSuffixTo: ['\\.vue$']
-                }
-              }
+                  appendTsSuffixTo: ['\\.vue$'],
+                },
+              },
             ],
           },
+          {
+            test: /\.less$/,
+            use: getStyleLoaders({}, 'less-loader'),
+          }
         ],
       },
       plugins: [
@@ -70,7 +77,15 @@ module.exports = function (env) {
           minify: env === 'production',
         }),
         new VueLoaderPlugin(),
-      ],
+        isProduction && new MiniCssExtractPlugin({
+          filename: 'css/[name].[contenthash:8].css',
+          chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+        }),
+        isProduction && new CssMinimizerWebpackPlugin()
+      ].filter(Boolean),
+      optimization: {
+        minimize: isProduction
+      }
     },
     config
   );

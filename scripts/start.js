@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'development';
+
 const webpack  = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const webpackFactory = require('../webpack/webpack.config');
