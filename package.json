@@ -37,6 +37,7 @@
     "postcss-loader": "^6.2.1",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.0.1",
+    "postcss-rem": "^2.0.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.3",
     "typescript": "^4.5.2",

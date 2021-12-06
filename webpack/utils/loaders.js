@@ -26,9 +26,15 @@ function getStyleLoaders(cssOption, preLoader) {
                   grid: true,
                   flexbox: 'no-2009',
                 },
-                browsers: 'last 2 versions'
+                browsers: 'last 2 versions',
               }),
               require('postcss-normalize')(),
+              require('postcss-rem')({
+                baseline: 75, // Default to 16
+                // convert: 'px', // Default to rem
+                fallback: false, // Default to false
+                precision: 6, // Default to 5
+              }),
             ],
           },
         },

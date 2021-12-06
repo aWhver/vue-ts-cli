@@ -6077,6 +6077,14 @@ postcss-reduce-transforms@^5.0.1:
     cssnano-utils "^2.0.1"
     postcss-value-parser "^4.1.0"
 
+postcss-rem@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/postcss-rem/-/postcss-rem-2.0.2.tgz#5633589f6e816516be60f9ab6df5d8037f64ff41"
+  integrity sha512-rhREfkcljKJtCY7adt5e+sRkPkj4z4GEW8utwiqsDgC6xF4U3guQZ08Dlu7XQDrwtUD4PGXwoh/qyD+RJpJq7g==
+  dependencies:
+    postcss "^8.3.5"
+    startijenn-rem "^1.0.1"
+
 postcss-replace-overflow-wrap@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/postcss-replace-overflow-wrap/-/postcss-replace-overflow-wrap-4.0.0.tgz#d2df6bed10b477bf9c52fab28c568b4b29ca4319"
@@ -7016,6 +7024,11 @@ stable@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/stable/-/stable-0.1.8.tgz#836eb3c8382fe2936feaf544631017ce7d47a3cf"
   integrity sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==
+
+startijenn-rem@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/startijenn-rem/-/startijenn-rem-1.0.2.tgz#6b967214554bd3cf98c8a535e64f8cf870e26d80"
+  integrity sha512-A4A/f+KTkoxaKyTC8oITP4OIMC1IdnlcIi1quv+qTS6uvAk35EX7uZVN9UEIXgreveFWiMJhmEuGGkfM/Aw9wQ==
 
 static-extend@^0.1.1:
   version "0.1.2"

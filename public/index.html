@@ -2,13 +2,77 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <meta
+    <!-- <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum=1.0, minimum=1.0"
-    />
+    /> -->
+    <meta name="hotcss" content="design-width=750" />
     <meta name="description" content="vue3.0、webpack5" />
     <meta name="keywords" content="vue3.0、webpack" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script>
+      !(function(win, doc) {
+        var metaEl = document.querySelector('meta[name=viewport]');
+        var h = document.querySelector('meta[name=hotcss]');
+        var dpr = window.devicePixelRatio || 1;
+        var designWidth = 0;
+        var maxWidth = 540;
+
+        if (((dpr = dpr >= 3 ? 3 : dpr >= 2 ? 2 : 1), h)) {
+          var content = h.getAttribute('content');
+          if (content) {
+            var initD = content.match(/initial-dpr=([\d\\.]+)/);
+            initD && (dpr = initD[1]);
+            var dw = content.match(/design-width=([\d\\.]+)/);
+            dw && (designWidth = dw[1]);
+            var mw = content.match(/max-width=([\d\\.]+)/);
+            mw && (maxWidth = mw[1]);
+          }
+        }
+
+        dpr && doc.documentElement.setAttribute('data-dpr', dpr);
+        dw && doc.documentElement.setAttribute('design-width', designWidth);
+        maxWidth && doc.documentElement.setAttribute('max-width', maxWidth);
+
+        var scale = 1 / dpr;
+        var metaElCon =
+          'width=device-width,initial-scale=' +
+          scale +
+          ',maximum-scale=' +
+          scale +
+          ',minimum-scale=' +
+          scale +
+          ',user-scalable=no';
+
+        metaEl
+          ? metaEl.setAttribute('content', metaElCon)
+          : ((metaEl = doc.createElement('meta')),
+            metaEl.setAttribute('name', 'viewport'),
+            metaEl.setAttribute('content', metaElCon),
+            doc.head.appendChild(metaEl));
+
+        setHtmlSize();
+        win.addEventListener('resize', setHtmlSize);
+        win.addEventListener('pageshow', (event) => {
+          if (event.persisted) {
+            setHtmlSize();
+          }
+        });
+        var timer = null;
+        function setHtmlSize() {
+          clearTimeout(timer);
+          timer = setTimeout(function() {
+            var width =
+              doc.documentElement.getBoundingClientRect().width ||
+              doc.documentElement.clientWidth;
+            if (width / dpr > maxWidth) {
+              width = dpr * maxWidth;
+            }
+            doc.documentElement.style.fontSize = width / 10 + 'px';
+          }, 333);
+        }
+      })(window, document);
+    </script>
   </head>
   <body>
     <div id="app"></div>
